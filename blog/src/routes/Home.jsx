@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-import axios from "axios";
+import blogFetch from "../axios/config";
 
 import { Link } from "react-router-dom";
 
@@ -11,7 +11,7 @@ const Home = () => {
 
   const getPosts = async () => {
     try {
-      const res = await axios.get("https://jsonplaceholder.typicode.com/posts");
+      const res = await blogFetch.get("/posts");
 
       const data = res.data;
       setPosts(data);
@@ -25,7 +25,7 @@ const Home = () => {
   }, []);
 
   return (
-    <div>
+    <div className="home">
       <h1>Últimos posts</h1>
       {!posts.length ? (
         <p>Carregando..</p>
